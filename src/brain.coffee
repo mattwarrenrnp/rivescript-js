@@ -24,6 +24,7 @@ class Brain
 
     # Private variables only relevant to the reply-answering part of RiveScript.
     @_currentUser = null # The current user asking for a message
+    @_rawMsg = null # The message without substitutions applied
 
   # Proxy functions
   say: (message) ->
@@ -42,6 +43,9 @@ class Brain
 
     # Store the current user's ID.
     @_currentUser = user
+
+    # Store raw message without substitutions.
+    @_rawMsg = msg
 
     # Format their message.
     msg   = @formatMessage(msg)
@@ -80,6 +84,7 @@ class Brain
 
     # Unset the current user ID.
     @_currentUser = undefined
+    @_rawMsg = undefined
 
   ##
   # string|Promise processCallTags (string reply, object scope, bool async)

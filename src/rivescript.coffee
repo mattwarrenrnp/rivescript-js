@@ -840,6 +840,20 @@ class RiveScript
       @warn "currentUser() is intended to be called from within a JS object macro!"
     return @brain._currentUser
 
+  ##
+  # string rawMsg ()
+  #
+  # Retrieve the un altered message. This is most useful when you want to capture
+  # text which otherwise would be lost due to the substitutions applied.
+  #
+  # This will return undefined if called from outside of a reply context
+  # (the value is unset at the end of the `reply()` method)
+  ##
+  rawMsg: () ->
+    if @brain._rawMsg is undefined
+      @warn "rawMsg() is intended to be called from within a JS object macro!"
+    return @brain._rawMsg
+
   ##############################################################################
   # Reply Fetching Methods                                                     #
   ##############################################################################
